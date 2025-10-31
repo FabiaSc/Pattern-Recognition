@@ -1,3 +1,3 @@
 # Pattern-Recognition
-Group exercises
+### Group exercises
 How do we split the work :

@@ -1,6 +1,6 @@
-#Pattern-Recognition 
+# Pattern-Recognition 
 
-###Group exercises 
+### Group exercises 
 
 For MLP how de read the results : 
 1) Hyperparameter search (train/val)  
@@ -33,7 +33,7 @@ Plots for the final training (no validation curves here—everything is used for
 final_mlp_trainval.pth  
 Final model weights (this is the model used to evaluate the test set). 
 
-3)Test metric The test accuracy is printed in the console at the very end as: 
+3) Test metric The test accuracy is printed in the console at the very end as: 
     TEST accuracy: 0.9770 
 
  

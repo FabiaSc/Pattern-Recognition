@@ -4,24 +4,24 @@
 ### Multilayer Perceptron (MLP)
 #### Hyperparameter grid (train/val)
 1) `{'hidden_size': 64,  'lr': 1e-3,  'dropout': 0.10, 'weight_decay': 0.0}`  
-   ![Acc](results-mlp/mlp_1_acc.png)  
-   ![Loss](results-mlp/mlp_1_loss.png)
+   ![Acc](results-MLP/mlp_1_acc.png)  
+   ![Loss](results-MLP/mlp_1_loss.png)
 
 2) `{'hidden_size': 128, 'lr': 1e-3,  'dropout': 0.10, 'weight_decay': 0.0}`  
-   ![Acc](results-mlp/mlp_2_acc.png)  
-   ![Loss](results-mlp/mlp_2_loss.png)
+   ![Acc](results-MLP/mlp_2_acc.png)  
+   ![Loss](results-MLP/mlp_2_loss.png)
 
 3) `{'hidden_size': 256, 'lr': 1e-3,  'dropout': 0.20, 'weight_decay': 0.0}`  
-   ![Acc](results-mlp/mlp_3_acc.png)  
-   ![Loss](results-mlp/mlp_3_loss.png)
+   ![Acc](results-MLP/mlp_3_acc.png)  
+   ![Loss](results-MLP/mlp_3_loss.png)
 
 4) `{'hidden_size': 128, 'lr': 5e-4,  'dropout': 0.10, 'weight_decay': 0.0}`  
-   ![Acc](results-mlp/mlp_4_acc.png)  
-   ![Loss](results-mlp/mlp_4_loss.png)
+   ![Acc](results-MLP/mlp_4_acc.png)  
+   ![Loss](results-MLP/mlp_4_loss.png)
 
 5) `{'hidden_size': 128, 'lr': 1e-4,  'dropout': 0.20, 'weight_decay': 1e-4}`  
-   ![Acc](results-mlp/mlp_5_acc.png)  
-   ![Loss](results-mlp/mlp_5_loss.png)
+   ![Acc](results-MLP/mlp_5_acc.png)  
+   ![Loss](results-MLP/mlp_5_loss.png)
 
 **Grid summary:** see `results/grid_results.csv` (one row per combo; sort by `val_acc`).
 | Col A | Col B | Col C |
@@ -33,8 +33,8 @@
 
 ### Final training (train + val with best hyperparameters)
 Training history: `results/final_train_history.csv`  
-![Final acc](results-mlp/final_train_acc.png)  
-![Final loss](results-mlp/final_train_loss.png)
+![Final acc](results-MLP/final_train_acc.png)  
+![Final loss](results-MLP/final_train_loss.png)
 
 ### Test performance
 **TEST accuracy: 0.9770.**

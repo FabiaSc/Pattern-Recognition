@@ -34,17 +34,21 @@
 
 
 **Best hyperparameters:** stored in `results-MLP/best_hparams.json` (weights at best val epoch: `results-MLP/best_on_val_mlp.pth`).
+
  `{'hidden_size': 256, 'lr': 1e-3,  'dropout': 0.20, 'weight_decay': 0.0}`
 
 ### Final training (train + val with best hyperparameters)
 Training history: `results-MLP/final_train_history.csv`
+
 No validation curves here, everything is used for training.
 ![Final acc](results-MLP/final_train_acc.png)  
 ![Final loss](results-MLP/final_train_loss.png)
 
 ### Test performance
 The final model weights (this is the model used to evaluate the test set) `results-MLP/final_mlp_trainval.pth`
+
 Performance on the testing set:
+
 **Accuracy: 0.9770.**
 
  

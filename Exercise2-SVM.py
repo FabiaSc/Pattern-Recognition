@@ -20,7 +20,7 @@ def load_indexed_images(tsv_path, base_dir=None, image_size=(28,28), as_gray=Tru
     labels = []
     for rel, label in zip(df['relpath'], df['label']):
         p = base / rel
-        # Open image, convert to grayscale, resize if necessary, convert to numpy
+        # Open image, convert to grayscale, resize and convert to numpy
         with Image.open(p) as im:
             if as_gray:
                 im = im.convert('L')
@@ -145,3 +145,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

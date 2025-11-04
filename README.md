@@ -40,6 +40,7 @@
 Training history: `results-MLP/final_train_history.csv`
 
 No validation curves here, everything is used for training.
+
 ![Final acc](results-MLP/final_train_acc.png)  
 ![Final loss](results-MLP/final_train_loss.png)
 
@@ -78,7 +79,7 @@ Best validation epoch by loss: **epoch 2** (val loss ↓ to 0.0392, val acc 0.98
 
 **Test accuracy:** **0.9874**.
 
-![Confusion Matrix](results-CNN/results-CNN/cnn_confusion_matrix.png)
+![Confusion Matrix](results-CNN/cnn_confusion_matrix.png)
 
 **Notes.**
 

@@ -23,61 +23,28 @@
    ![Acc](results-MLP/mlp_5_acc.png)  
    ![Loss](results-MLP/mlp_5_loss.png)
 
-**Grid summary:** see `results/grid_results.csv` (one row per combo; sort by `val_acc`).
-| Col A | Col B | Col C |
-|-------|------:|:-----:|
-| a1    |   12  |  ok   |
-| a2    |  345  |  no   |
+**Grid summary:** see `results-MLP/grid_results.csv` (one row per combo; sort by `val_acc`).
+| # | hidden_size | lr     | dropout | weight_decay | val_acc |
+|---|-------------|--------|---------|--------------|--------:|
+| 1 | 64          | 1e-3   | 0.10    | 0.0          | 0.9683  |
+| 2 | 128         | 1e-3   | 0.10    | 0.0          | 0.9725  |
+| 3 | 256         | 1e-3   | 0.20    | 0.0          | 0.9767  |
+| 4 | 128         | 5e-4   | 0.10    | 0.0          | 0.9715  |
+| 5 | 128         | 1e-4   | 0.20    | 1e-4         | 0.9547  |
 
-**Best hyperparameters:** stored in `results/best_hparams.json` (weights at best val epoch: `results/best_on_val_mlp.pth`).
+
+**Best hyperparameters:** stored in `results-MLP/best_hparams.json` (weights at best val epoch: `results-MLP/best_on_val_mlp.pth`).
+ `{'hidden_size': 256, 'lr': 1e-3,  'dropout': 0.20, 'weight_decay': 0.0}`
 
 ### Final training (train + val with best hyperparameters)
-Training history: `results/final_train_history.csv`  
+Training history: `results-MLP/final_train_history.csv`
+No validation curves here, everything is used for training.
 ![Final acc](results-MLP/final_train_acc.png)  
 ![Final loss](results-MLP/final_train_loss.png)
 
 ### Test performance
-**TEST accuracy: 0.9770.**
-
-### Observations
-- `lr=1e-3` with `hidden_size≈128` and `dropout=0.1` gives the best stability/accuracy (~97% val).  
-- Larger hidden size (256) overfits earlier (validation loss rises after ~5–7 epochs).  
-- Lower `lr` (5e-4) is smoother but slower; `1e-4 + weight_decay` underfits.
-
-
-
-For MLP how de read the results : 
-1) Hyperparameter search (train/val)  
-
-grid_results.csv 
-One row per hyper-parameter combo (hidden size, lr, etc.) with the validation accuracy (val_acc). Sort by val_acc to see the winner. 
-
-mlp_i_loss.png and mlp_i_acc.png  
-Training vs validation curves for combo i.  
-i is the index of the combo in the grid list inside the code (1, 2, 3, …).  
-The train–validation curves across 15 epochs for each grid combination i, in this order :  
-
-{'hidden_size': 64, 'lr': 1e-3, 'dropout': 0.10, 'weight_decay': 0.0}
-{'hidden_size': 128, 'lr': 1e-3, 'dropout': 0.10, 'weight_decay': 0.0}
-{'hidden_size': 256, 'lr': 1e-3, 'dropout': 0.20, 'weight_decay': 0.0}
-{'hidden_size': 128, 'lr': 5e-4, 'dropout': 0.10, 'weight_decay': 0.0}
-{'hidden_size': 128, 'lr': 1e-4, 'dropout': 0.20, 'weight_decay': 1e-4} 
-
-best_hparams.json --> The winning hyperparameters (the combo with the best val_acc). 
-
-best_on_val_mlp.pth --> Model weights saved at the best validation epoch for the winning combo. 
-
-2) Final training (train + val)  
-
-final_train_history.csv --> Training history (loss/accuracy) when retraining on train+val using the winning hyperparameters. 
-
-final_train_loss.png, final_train_acc.png  
-Plots for the final training (no validation curves here—everything is used for training). 
-
-final_mlp_trainval.pth  
-Final model weights (this is the model used to evaluate the test set). 
-
-3) Test metric The test accuracy is printed in the console at the very end as: 
-    TEST accuracy: 0.9770 
+The final model weights (this is the model used to evaluate the test set) `results-MLP/final_mlp_trainval.pth`
+Performance on the testing set:
+**Accuracy: 0.9770.**
 
  

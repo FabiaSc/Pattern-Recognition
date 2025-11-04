@@ -1,6 +1,50 @@
 # Pattern-Recognition 
 
-### Group exercises 
+## Group exercises 
+### Multilayer Perceptron (MLP)
+#### Hyperparameter grid (train/val)
+1) `{'hidden_size': 64,  'lr': 1e-3,  'dropout': 0.10, 'weight_decay': 0.0}`  
+   ![Acc](results/mlp_1_acc.png)  
+   ![Loss](results/mlp_1_loss.png)
+
+2) `{'hidden_size': 128, 'lr': 1e-3,  'dropout': 0.10, 'weight_decay': 0.0}`  
+   ![Acc](results/mlp_2_acc.png)  
+   ![Loss](results/mlp_2_loss.png)
+
+3) `{'hidden_size': 256, 'lr': 1e-3,  'dropout': 0.20, 'weight_decay': 0.0}`  
+   ![Acc](results/mlp_3_acc.png)  
+   ![Loss](results/mlp_3_loss.png)
+
+4) `{'hidden_size': 128, 'lr': 5e-4,  'dropout': 0.10, 'weight_decay': 0.0}`  
+   ![Acc](results/mlp_4_acc.png)  
+   ![Loss](results/mlp_4_loss.png)
+
+5) `{'hidden_size': 128, 'lr': 1e-4,  'dropout': 0.20, 'weight_decay': 1e-4}`  
+   ![Acc](results/mlp_5_acc.png)  
+   ![Loss](results/mlp_5_loss.png)
+
+**Grid summary:** see `results/grid_results.csv` (one row per combo; sort by `val_acc`).
+| Col A | Col B | Col C |
+|-------|------:|:-----:|
+| a1    |   12  |  ok   |
+| a2    |  345  |  no   |
+
+**Best hyperparameters:** stored in `results/best_hparams.json` (weights at best val epoch: `results/best_on_val_mlp.pth`).
+
+### Final training (train + val with best hyperparameters)
+Training history: `results/final_train_history.csv`  
+![Final acc](results/final_train_acc.png)  
+![Final loss](results/final_train_loss.png)
+
+### Test performance
+**TEST accuracy: 0.9770.**
+
+### Observations
+- `lr=1e-3` with `hidden_size≈128` and `dropout=0.1` gives the best stability/accuracy (~97% val).  
+- Larger hidden size (256) overfits earlier (validation loss rises after ~5–7 epochs).  
+- Lower `lr` (5e-4) is smoother but slower; `1e-4 + weight_decay` underfits.
+
+
 
 For MLP how de read the results : 
 1) Hyperparameter search (train/val)  

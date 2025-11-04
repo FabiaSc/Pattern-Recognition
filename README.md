@@ -58,7 +58,8 @@ Below we show **train vs. validation** curves aggregated for all CNN hyperparame
 ![Accuracy across hyperparameters](results-CNN/accuracy_plot.png)
 
 **Legend format:** `k{3|5|7}-L{2|3}-lr{0.001|0.01}` where  
-`k` = kernel size, `L` = number of conv blocks, `lr` = learning rate.  
+`k` = kernel size, `L` = number of conv blocks, `lr` = learning rate.
+
 Solid = train, dashed = validation.
 
 #### What we observe
@@ -72,11 +73,15 @@ Solid = train, dashed = validation.
 | 3×3    | 3           | 0.01 | **0.9914**
 
 **Re-train & test.** Re-trained the best config for 5 epochs on the train split (with validation monitoring).  
+
 Best validation epoch by loss: **epoch 2** (val loss ↓ to 0.0392, val acc 0.9877), then mild overfitting.  
+
 **Test accuracy:** **0.9874**.
+
 ![Confusion Matrix](results-CNN/results-CNN/cnn_confusion_matrix.png)
 
 **Notes.**
+
 - Almost all mass is on the diagonal; a few rare off-diagonal errors remain.
 
  

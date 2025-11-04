@@ -1,5 +1,4 @@
 # Pattern-Recognition 
-
 ## Group exercises 
 ### Multilayer Perceptron (MLP)
 #### Hyperparameter grid (train/val)
@@ -50,5 +49,34 @@ The final model weights (this is the model used to evaluate the test set) `resul
 Performance on the testing set:
 
 **Accuracy: 0.9770.**
+
+### CNN — Aggregate curves across hyperparameters
+
+Below we show **train vs. validation** curves aggregated for all CNN hyperparameter settings.
+
+![Loss across hyperparameters](results-CNN/loss_plot.png)
+![Accuracy across hyperparameters](results-CNN/accuracy_plot.png)
+
+**Legend format:** `k{3|5|7}-L{2|3}-lr{0.001|0.01}` where  
+`k` = kernel size, `L` = number of conv blocks, `lr` = learning rate.  
+Solid = train, dashed = validation.
+
+#### What we observe
+- **Fast convergence:** most configs reach >95–99% validation accuracy within **1–3 epochs**.
+- **Learning rate matters:** `lr = 0.001` consistently yields **lower val loss & higher val acc**; `lr = 0.01` underperforms (higher val loss, flatter/slower acc).
+- **Kernel size:** `k=3` and `k=5` are the most stable; `k=7` brings no clear gain and can slow/imprecise early updates.
+
+**Best validation configuration**  
+| kernel | conv blocks | lr   | best val acc |
+|-------:|------------:|:-----|-------------:|
+| 3×3    | 3           | 0.01 | **0.9914**
+
+**Re-train & test.** Re-trained the best config for 5 epochs on the train split (with validation monitoring).  
+Best validation epoch by loss: **epoch 2** (val loss ↓ to 0.0392, val acc 0.9877), then mild overfitting.  
+**Test accuracy:** **0.9874**.
+![Confusion Matrix](results-CNN/results-CNN/cnn_confusion_matrix.png)
+
+**Notes.**
+- Almost all mass is on the diagonal; a few rare off-diagonal errors remain.
 
  

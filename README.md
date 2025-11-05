@@ -4,7 +4,7 @@
 
 ### Support Vector Machine (SVM)
 
-We evaluate two SVM variants on MNIST: a **linear** SVM (tuned quickly with `SGDClassifier`, then refit with `LinearSVC`) and an **RBF** SVM trained **after PCA (100 comps)**. Hyperparameters are tuned on a 10k stratified subset via cross-validation; the selected configs are then refit on the full training set and evaluated on the test set (confusion matrices below).  
+We evaluate two SVM variants on MNIST: a **linear** SVM (tuned with `SGDClassifier`, then refit with `LinearSVC`) and an **RBF** SVM trained **after PCA (100 comps)**. Hyperparameters are tuned on a 10k stratified subset via cross-validation; the selected configurations are refit on the full training set and evaluated on the test set (confusion matrices shown below).  
 *(Per the assignment, we report CV accuracy curves and the final confusion matrices; see the CSV files for full grids.)*
 
 #### 1) Linear SVM (SGD → LinearSVC)
@@ -52,8 +52,8 @@ For the non-linear SVM, we apply PCA (100 components) before the RBF kernel.
 ![RBF confusion](results-SVM/confusion_rbf_final.png)
 
 **Notes.**  
-- Linear SVM improves as `alpha` increases within the tested range (weaker regularization).  
-- For RBF, `gamma='scale'` clearly dominates fixed `gamma` values; higher `C` helps within the explored grid.  
+- In our CV results for the linear SVM, mean accuracy increased with larger `alpha` within the tested range.  
+- In our CV results for the RBF SVM, configurations with `gamma='scale'` obtained higher mean accuracy than the fixed `gamma` values considered; within the explored grid, larger `C` values were associated with higher mean accuracy.
 
 ### Multilayer Perceptron (MLP)
 #### Hyperparameter grid (train/val)

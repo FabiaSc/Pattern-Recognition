@@ -52,8 +52,8 @@ For the non-linear SVM, we apply PCA (100 components) before the RBF kernel.
 ![RBF confusion](results-SVM/confusion_rbf_final.png)
 
 **Notes.**  
-- In our CV results for the linear SVM, mean accuracy increased with larger `alpha` within the tested range.  
-- In our CV results for the RBF SVM, configurations with `gamma='scale'` obtained higher mean accuracy than the fixed `gamma` values considered; within the explored grid, larger `C` values were associated with higher mean accuracy.
+- Results for the linear SVM, mean accuracy increased with larger `alpha` within the tested range.  
+- Results for the RBF SVM, configurations with `gamma='scale'` obtained higher mean accuracy than the fixed `gamma` values considered; within the explored grid, larger `C` values were associated with higher mean accuracy.
 
 ### Multilayer Perceptron (MLP)
 #### Hyperparameter grid (train/val)

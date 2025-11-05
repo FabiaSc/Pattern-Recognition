@@ -1,6 +1,60 @@
 # Pattern-Recognition 
 ## Group exercises 
 ##### Group members : Alec Imhof, Fabia Schreyer, Loan Strübi, Ebrima Tunkara, Aurélie Wasem
+
+### Support Vector Machine (SVM)
+
+We evaluate two SVM variants on MNIST: a **linear** SVM (tuned quickly with `SGDClassifier`, then refit with `LinearSVC`) and an **RBF** SVM trained **after PCA (100 comps)**. Hyperparameters are tuned on a 10k stratified subset via cross-validation; the selected configs are then refit on the full training set and evaluated on the test set (confusion matrices below).  
+*(Per the assignment, we report CV accuracy curves and the final confusion matrices; see the CSV files for full grids.)*
+
+#### 1) Linear SVM (SGD → LinearSVC)
+**Hyperparameter grid (train/val, 10k subset)**  
+1) `{'alpha': 1e-5}`  
+2) `{'alpha': 5e-5}`  
+3) `{'alpha': 1e-4}`  
+4) `{'alpha': 5e-4}`  
+
+![CV acc vs alpha](Results - SVM/cv_linear_alpha.png)
+
+**Grid summary:** see `Results - SVM/cv_results_sgd.csv` (one row per alpha; sort by `mean_test_score`).  
+
+**Best hyperparameters (subset CV):** `{'alpha': 5e-4}` → refit with `LinearSVC` on the full train set.  
+**Model file:** `Results - SVM/svm_linear_final_full.joblib` (scaler: `Results - SVM/scaler.joblib`).  
+
+**Test evaluation (final model)**  
+![Linear confusion](Results - SVM/confusion_linear_final.png)
+
+---
+
+#### 2) RBF SVM (with PCA = 100)
+For the non-linear SVM, we apply PCA (100 components) before the RBF kernel.
+
+**Hyperparameter grid (train/val on PCA-subset, 10k)**  
+1) `{'C': 0.1, 'gamma': 'scale'}`  
+2) `{'C': 0.1, 'gamma': 0.01}`  
+3) `{'C': 0.1, 'gamma': 0.1}`  
+4) `{'C': 1.0, 'gamma': 'scale'}`  
+5) `{'C': 1.0, 'gamma': 0.01}`  
+6) `{'C': 1.0, 'gamma': 0.1}`  
+7) `{'C': 10.0, 'gamma': 'scale'}`  
+8) `{'C': 10.0, 'gamma': 0.01}`  
+9) `{'C': 10.0, 'gamma': 0.1}`  
+
+![CV acc vs C](Results - SVM/cv_rbf_C.png)  
+![CV acc vs gamma](Results - SVM/cv_rbf_gamma.png)
+
+**Grid summary:** see `Results - SVM/cv_results_rbf.csv` (full grid with mean CV accuracy).  
+
+**Best hyperparameters (subset CV):** `{'C': 10.0, 'gamma': 'scale'}` (with PCA=100).  
+**Model files:** `Results - SVM/pca_full.joblib`, `Results - SVM/svm_rbf_final_full.joblib`.  
+
+**Test evaluation (final model)**  
+![RBF confusion](Results - SVM/confusion_rbf_final.png)
+
+**Notes.**  
+- Linear SVM improves as `alpha` increases within the tested range (weaker regularization).  
+- For RBF, `gamma='scale'` clearly dominates fixed `gamma` values; higher `C` helps within the explored grid.  
+
 ### Multilayer Perceptron (MLP)
 #### Hyperparameter grid (train/val)
 1) `{'hidden_size': 64,  'lr': 1e-3,  'dropout': 0.10, 'weight_decay': 0.0}`  

@@ -14,15 +14,15 @@ We evaluate two SVM variants on MNIST: a **linear** SVM (tuned quickly with `SGD
 3) `{'alpha': 1e-4}`  
 4) `{'alpha': 5e-4}`  
 
-![CV acc vs alpha](Results - SVM/cv_linear_alpha.png)
+![CV acc vs alpha](results-SVM/cv_linear_alpha.png)
 
-**Grid summary:** see `Results - SVM/cv_results_sgd.csv` (one row per alpha; sort by `mean_test_score`).  
+**Grid summary:** see `results-SVM/cv_results_sgd.csv` (one row per alpha; sort by `mean_test_score`).  
 
 **Best hyperparameters (subset CV):** `{'alpha': 5e-4}` → refit with `LinearSVC` on the full train set.  
-**Model file:** `Results - SVM/svm_linear_final_full.joblib` (scaler: `Results - SVM/scaler.joblib`).  
+**Model file:** `results-SVM/svm_linear_final_full.joblib` (scaler: `results-SVM/scaler.joblib`).  
 
 **Test evaluation (final model)**  
-![Linear confusion](Results - SVM/confusion_linear_final.png)
+![Linear confusion](results-SVM/confusion_linear_final.png)
 
 ---
 
@@ -40,16 +40,16 @@ For the non-linear SVM, we apply PCA (100 components) before the RBF kernel.
 8) `{'C': 10.0, 'gamma': 0.01}`  
 9) `{'C': 10.0, 'gamma': 0.1}`  
 
-![CV acc vs C](Results - SVM/cv_rbf_C.png)  
-![CV acc vs gamma](Results - SVM/cv_rbf_gamma.png)
+![CV acc vs C](results-SVM/cv_rbf_C.png)  
+![CV acc vs gamma](results-SVM/cv_rbf_gamma.png)
 
-**Grid summary:** see `Results - SVM/cv_results_rbf.csv` (full grid with mean CV accuracy).  
+**Grid summary:** see `results-SVM/cv_results_rbf.csv` (full grid with mean CV accuracy).  
 
 **Best hyperparameters (subset CV):** `{'C': 10.0, 'gamma': 'scale'}` (with PCA=100).  
-**Model files:** `Results - SVM/pca_full.joblib`, `Results - SVM/svm_rbf_final_full.joblib`.  
+**Model files:** `results-SVM/pca_full.joblib`, `results-SVM/svm_rbf_final_full.joblib`.  
 
 **Test evaluation (final model)**  
-![RBF confusion](Results - SVM/confusion_rbf_final.png)
+![RBF confusion](results-SVM/confusion_rbf_final.png)
 
 **Notes.**  
 - Linear SVM improves as `alpha` increases within the tested range (weaker regularization).  

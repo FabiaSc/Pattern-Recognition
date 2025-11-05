@@ -1,5 +1,6 @@
 # Pattern-Recognition 
 ## Group exercises 
+##### Group members : Alec Imhof, Fabia Schreyer, Loan Strübi, Ebrima Tunkara, Aurélie Wasem
 ### Multilayer Perceptron (MLP)
 #### Hyperparameter grid (train/val)
 1) `{'hidden_size': 64,  'lr': 1e-3,  'dropout': 0.10, 'weight_decay': 0.0}`  

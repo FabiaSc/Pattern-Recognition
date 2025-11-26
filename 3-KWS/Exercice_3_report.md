@@ -68,16 +68,11 @@ These results suggest that, with the current feature set and training procedure,
 
 ## Discussion
 
-Discuss the implications of the results. This section should interpret how the findings answer the initial questions or solve the stated problem. Consider what the results mean in practical terms. Are there limitations to the analysis or data that might affect the conclusions? Also, mention any unexpected findings and potential reasons behind them. If relevant, compare the results with initial hypotheses or with findings from similar analyses.
+The main objective of this exercise was to build a query-by-example keyword spotting system for historical handwritten documents, starting from page images and word polygons, and to compare a pure DTW-based baseline with a learned similarity model. Our results show that the DTW baseline achieves a modest but clearly non-random retrieval performance (mAP ≈ 0.126), whereas the learned similarity model reaches a lower mAP (≈ 0.058) and weaker Precision@5 in our random keyword experiments. In practical terms, this means that, given a single query example, the system sometimes retrieves correct instances among the top-ranked candidates, but it frequently confuses visually similar but textually different words.
 
-*(Placeholder: Elaborate on the meaning of the results, their reliability, and any insights or real-world implications. Discuss limitations and surprises discovered during the analysis.)*
+The learned similarity model behaves somewhat paradoxically: on the balanced word-pair validation set it attains a reasonably good ROC-AUC (~0.80) and accuracy (~0.77), indicating that it can distinguish “same word” vs “different word” when positives and negatives are sampled in a controlled way. However, when we switch to the full retrieval scenario, where only a handful of relevant words must be found among thousands of candidates, the learned scores do not provide better rankings than plain DTW. This suggests that the current feature representation and training setup are not strong enough to separate relevant words from many “hard negatives” that are visually similar in George Washington’s handwriting.
 
----
+Several limitations help explain these findings. First, the sliding-window features are intentionally simple (ink density, vertical profiles, transitions, and basic contour statistics), which captures general stroke structure but not fine-grained letter shapes. In a single-writer setting, many different words share very similar global appearance under such features. Second, the retrieval task is highly imbalanced: each query has only a fe
 
-## Conclusion
-
-Summarize the key findings of the project and reflect on whether the objectives were met. Recap the main points from the analysis and what conclusions can be drawn. Additionally, suggest possible next steps or recommendations for future work. This could include improving the model, collecting more data, exploring new questions that arose, or applying the insights in a practical setting.
-
-*(Placeholder: Final summary of findings, conclusions drawn, and recommendations for future improvements or further analysis.)*
 
 ::contentReference[oaicite:0]{index=0}

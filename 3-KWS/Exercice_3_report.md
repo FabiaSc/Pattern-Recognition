@@ -3,8 +3,11 @@
 
 ## Introduction
 
-In this section, provide a brief overview of the project and its objectives. Describe the context or background that led to this analysis and what you aim to achieve. For example, explain the problem being addressed or the questions the analysis is trying to answer.  
-*(Placeholder: Detailed introduction to be added, including project background and objectives.)*
+This project is carried out in the context of Exercise 3 of the Pattern Recognition course, which focuses on **query-by-example keyword spotting** in historical handwritten documents. The goal is to build a system that, given a single example image of a word (the query), can automatically retrieve other instances of the same word from a collection of page images. We work with the **George Washington dataset**, which contains scanned letters of George Washington along with polygon annotations for each word, text transcriptions, and predefined train/validation splits and keyword lists.   
+
+Our main objective is to design and evaluate a keyword spotting pipeline based on **sliding-window features** and **Dynamic Time Warping (DTW)**, as suggested in the course material. Word images are first extracted from the page scans using the provided word polygons, preprocessed, and converted into sequences of feature vectors by sliding a vertical window across each word. DTW is then used to compute a dissimilarity measure between two word sequences, which serves as a baseline similarity model for retrieval. On top of this, we also implement a **learned similarity model**: we build a dataset of word pairs, extract DTW-based pair features, and train a logistic regression classifier to predict whether two word images represent the same transcription.
+
+The notebook implements this full pipeline and evaluates it on a query-by-example keyword spotting task: query word instances are taken from the validation split, and retrieval is performed over the training split. Performance is measured using information-retrieval metrics such as Precision@K and mean Average Precision (mAP), allowing us to compare the DTW baseline with the learned similarity model and to discuss the strengths and limitations of our approach.
 
 ---
 

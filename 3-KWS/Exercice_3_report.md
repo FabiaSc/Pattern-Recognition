@@ -1,6 +1,8 @@
 # Pattern-Recognition 
 ## Exercice 3
 
+In this exercise we implement a query-by-example keyword spotting system for historical handwritten documents, following the instructions of the Pattern Recognition course. We work with the **George Washington dataset**, which provides scanned pages of George Washington’s letters together with polygon annotations for each word and their text transcriptions. Starting from these page images and word polygons, the goal is to retrieve all other instances of a given keyword image using a DTW-based baseline and a learned similarity model, and to compare their performance.
+
 ## Results and Analysis
 
 ### DTW baseline

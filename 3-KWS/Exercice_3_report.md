@@ -13,19 +13,31 @@ The notebook implements this full pipeline and evaluates it on a query-by-exampl
 
 ## Data Overview
 
-Give an overview of the data used in this project. Describe the source of the data, what it contains, and how it is relevant to the analysis. Mention key characteristics such as the number of records, features/variables included, and the time period or scope the data covers. If any initial preprocessing or cleaning steps were performed before analysis, note them here.
+The experiments in this project are based on the **George Washington dataset**, a collection of scanned letters written by George Washington. The dataset is provided in a structured format that includes both the page images and detailed annotations for each word occurrence. For this exercise, we use the official train/validation split and a predefined list of keywords.
 
-- **Data Source:**  
-  *(Placeholder: e.g., origin of dataset, data collection method.)*
+The data is organised into the following main components:
 
-- **Data Description:**  
-  *(Placeholder: summary of what the data represents and key fields.)*
+- **Page images (`images/*.jpg`)**  
+  Grayscale  scans of full manuscript pages. All word images used in our experiments are cropped from these page-level images.
 
-- **Size and Format:**  
-  *(Placeholder: number of entries, features, and file format.)*
+- **Word locations (`locations/*.svg`)**  
+  For each page, an SVG file specifies polygon outlines for all word segments. These polygons provide precise spatial boundaries that we use to crop individual word images from the corresponding page image.
 
-- **Initial Preprocessing:**  
-  *(Placeholder: any data cleaning or formatting steps.)*
+- **Transcriptions (`transcription.tsv`)**  
+  A character-based transcription file that maps each annotated word instance (identified by a unique `word_id`) to its textual content (the word string), along with page and line identifiers.
+
+- **Keyword list (`keywords.tsv`)**  
+  A list of words that appear in both the training and validation splits. These serve as the target “keywords” for the query-by-example keyword spotting task.
+
+- **Splits (`train.tsv`, `validation.tsv`)**  
+  Files that define which word instances belong to the **training** and **validation** sets. In our implementation, these are merged with the transcription information into a single `words_df` table containing, for each word instance, its `word_id`, `doc_id`, `line_id`, transcription, and split label (`train` or `val`).
+
+In the notebook, we first load all TSV files and assemble a unified dataframe of word instances. Each word can then be associated with:
+1. A page image (via `doc_id`),
+2. A polygon describing its location on that page (via the SVG `word_id`),
+3. Its ground-truth transcription and split assignment.
+
+This structured representation provides the basis for subsequent steps: cropping word images, extracting sliding-window features, and evaluating keyword spotting performance using the train/validation split and the provided keyword list.
 
 ---
 
